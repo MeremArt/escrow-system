@@ -21,7 +21,7 @@ payer = taker,
 associated_token::mint = mint_a,
 associated_token::authority = taker,
 )]
-pub taker_ata_a: Interface<'info,TokenAccount>,
+pub taker_ata_a: InterfaceAccount<'info, TokenAccount>,
 #[account(
     mut,
     associated_token::mint = mint_b,
@@ -96,7 +96,7 @@ impl<'info> Take<'info>{
             mint: self.mint_a.to_account_info(),
         };
         let cpi_context = CpiContext::new_with_signer(cpi_program, cpi_accounts, &signer_seeds);
-        transfer_checked(cpi_context, self.vault.amount, self.mint_b.decimals)?;
+        transfer_checked(cpi_context, self.vault.amount, self.mint_a.decimals)?;
 
 
         let cpi_program = self.token_program.to_account_info();
