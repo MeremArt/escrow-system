@@ -140,6 +140,8 @@ describe("escrow", () => {
 
   // Optional: Clean up after tests
   after(async () => {
+    const account = program.account.escrow.all();
+    console.log("escrow", account);
     // Add cleanup code if needed
     console.log("Tests completed");
   });
